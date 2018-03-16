@@ -20,6 +20,7 @@ public class Favorites {
         if(!this.coins.contains(symbol)){
             coins.add(symbol);
             repo.searchCoin(symbol).setFavorite(true);
+            System.out.println("ADDED: " + repo.searchCoin(symbol).isFavorite());
         }
     }
     
@@ -28,6 +29,7 @@ public class Favorites {
         if(this.coins.contains(symbol)){
             coins.remove(symbol);
             repo.searchCoin(symbol).setFavorite(false);
+            System.out.println("REMOVED: " + repo.searchCoin(symbol).isFavorite());
         }
     }
     

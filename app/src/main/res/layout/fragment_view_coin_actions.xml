@@ -17,12 +17,11 @@
         android:id="@+id/favoriteIcon"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
         android:layout_below="@+id/breakLine3"
-        android:outlineProvider="bounds"
-        android:backgroundTint="@color/good"
         android:tint="@color/favoritecol"
-        app:srcCompat="@drawable/ic_menu_favorites" />
+        app:srcCompat="@drawable/ic_star_border_black_24dp" />
 
     <View
         android:id="@+id/breakLine4"

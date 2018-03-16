@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/coinFavoriteFragment"
-        android:name="qmul.se.g31.comparechain.ViewCoinWindow.FavoriteCoinFragment"
+        android:name="qmul.se.g31.comparechain.ViewCoinWindow.ActionsCoinFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/coinDataFragment"

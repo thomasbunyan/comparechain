@@ -26,6 +26,8 @@ public class ViewCoinWindow extends AppCompatActivity{
         Intent intent = getIntent();
         Coin coin = (Coin)intent.getSerializableExtra("coin");
 
+        ActionsCoinFragment actions = (ActionsCoinFragment) getSupportFragmentManager().findFragmentById(R.id.coinFavoriteFragment);
+        actions.setCoin(coin);
         CoinDataFragment data = (CoinDataFragment) getSupportFragmentManager().findFragmentById(R.id.coinDataFragment);
         data.setData(coin);
     }
