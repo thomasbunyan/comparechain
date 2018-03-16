@@ -23,6 +23,7 @@ public class Repository {
             id.put(coin.getName(), coin.getSymbol());
         }
         else{
+            if(searchCoin(coin.getSymbol()).isFavorite()) coin.setFavorite(true);
             repo.replace(coin.getSymbol(), coin);
         }
     }

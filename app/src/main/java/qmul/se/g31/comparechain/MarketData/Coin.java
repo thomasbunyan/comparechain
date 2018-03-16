@@ -1,28 +1,34 @@
 
 package qmul.se.g31.comparechain.MarketData;
 
-public class Coin {
+import java.io.Serializable;
+
+public class Coin implements Serializable{
     
     private String symbol;
     private String name;
     private double price;
     private long marketcap;
     private long supply;
+    private long volume;
     private int rank;
     private double percent1h;
     private double percent24h;
     private double percent7d;
+    private boolean favorite;
     
-    public Coin(String symbol, String name, double price, long marketcap, long supply, int rank, double percent1h, double percent24h, double percent7d){
+    public Coin(String symbol, String name, double price, long marketcap, long supply, long volume,int rank, double percent1h, double percent24h, double percent7d){
         this.symbol = symbol;
         this.name = name;
         this.price = price;
         this.marketcap = marketcap;
         this.supply = supply;
+        this.volume = volume;
         this.rank = rank;
         this.percent1h = percent1h;
         this.percent24h = percent24h;
         this.percent7d = percent7d;
+        this.favorite = false;
     }
 
     public String getSymbol(){
@@ -40,6 +46,9 @@ public class Coin {
     public long getSupply(){
         return this.supply;
     }
+    public long getVolume(){
+        return this.volume;
+    }
     public int getRank(){
         return this.rank;
     }
@@ -51,5 +60,11 @@ public class Coin {
     }
     public double getPercent7d(){
         return this.percent7d;
+    }
+    public boolean isFavorite(){
+        return this.favorite;
+    }
+    public void setFavorite(boolean fav){
+        this.favorite = fav;
     }
 }

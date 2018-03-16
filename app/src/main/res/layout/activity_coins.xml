@@ -37,9 +37,16 @@
             android:text="Change" />
     </LinearLayout>
 
+    <View
+        android:id="@+id/breakLine"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/coinListHeading"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
     <ListView
         android:id="@+id/coinListView"
-        android:layout_below="@+id/coinListHeading"
+        android:layout_below="@+id/breakLine"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
