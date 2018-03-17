@@ -38,7 +38,7 @@ public class ActionsCoinFragment extends Fragment{
         favIcon = (ImageView) view.findViewById(R.id.favoriteIcon);
 
         favIcon.setOnClickListener(
-                new ImageView.OnClickListener(){
+                    new ImageView.OnClickListener(){
                     public void onClick(View v){
                         if(repo.searchCoin(coin.getSymbol()).isFavorite()){
                             favIcon.setImageResource(R.drawable.ic_star_border_black_24dp);

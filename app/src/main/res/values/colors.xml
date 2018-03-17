@@ -8,4 +8,5 @@
     <color name="good">#00E640</color>
     <color name="bad">#EF4836</color>
     <color name="favoritecol">#F5D76E</color>
+    <color name="alert">#DB0A5B</color>
 </resources>
