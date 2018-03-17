@@ -32,7 +32,7 @@ public class FavoriteRowAdapter extends ArrayAdapter<Coin> {
     private Favorites fav;
 
     public FavoriteRowAdapter(@NonNull Context context, int resource, ArrayList<Coin> objects) {
-        super(context, resource , objects);
+        super(context, resource, objects);
         this.mObjects = objects;
         this.layout = resource;
 
@@ -68,11 +68,11 @@ public class FavoriteRowAdapter extends ArrayAdapter<Coin> {
         if(resID != 0) coinIcon.setImageResource(resID);
 
         mainViewHolder.favButton.setImageResource(R.drawable.ic_menu_favorites);
+
         mainViewHolder.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sym = mObjects.get(position).getSymbol();
-                Coin coin = repo.searchCoin(sym);
+                Coin coin = repo.searchCoin(mObjects.get(position).getSymbol());
                 if(coin.isFavorite()){
                     mainViewHolder.favButton.setImageResource(R.drawable.ic_star_border_black_24dp);
                     fav.removeFromFavorites(coin.getSymbol());
@@ -83,7 +83,6 @@ public class FavoriteRowAdapter extends ArrayAdapter<Coin> {
                 }
             }
         });
-
         return convertView;
     }
 

@@ -24,6 +24,7 @@ public class MainWindowActivity extends AppCompatActivity
         setContentView(R.layout.activity_main_window);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("Coins");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -79,15 +80,21 @@ public class MainWindowActivity extends AppCompatActivity
 
         if (id == R.id.nav_coins) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new CoinView()).commit();
+            setTitle("Coins");
         } else if (id == R.id.nav_favorites) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new FavoritesView()).commit();
+            setTitle("Favorites");
         } else if (id == R.id.nav_portfolio) {
+            setTitle("Simulated Portfolio");
             fragmentManager.beginTransaction().replace(R.id.content_frame, new PortfolioView()).commit();
         } else if (id == R.id.nav_news) {
+            setTitle("News");
             fragmentManager.beginTransaction().replace(R.id.content_frame, new NewsView()).commit();
         } else if (id == R.id.nav_tools) {
+            setTitle("Tools");
             fragmentManager.beginTransaction().replace(R.id.content_frame, new ToolsView()).commit();
         } else if (id == R.id.nav_settings) {
+            setTitle("Settings");
             fragmentManager.beginTransaction().replace(R.id.content_frame, new SettingsView()).commit();
         }
 
