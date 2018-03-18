@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import qmul.se.g31.comparechain.MarketData.Coin;
 import qmul.se.g31.comparechain.MarketData.Repository;
+import qmul.se.g31.comparechain.MarketData.SimulatedPortfolio;
 import qmul.se.g31.comparechain.ViewCoinWindow.ViewCoinWindow;
 
 /**
@@ -41,6 +42,13 @@ public class CoinView extends Fragment {
         repo.updateCoin(new Coin("ETH", "Etherium", 5435.03, 4300, 346646, 3453, 1, -0.05, -0.3, -0.57));
         repo.updateCoin(new Coin("OAG", "Anothercoin", 234.34, 3453, 7565, 6856346, 1, 0.13, -0.3, -0.57));
         repo.updateCoin(new Coin("ARS", "Arsenalcoin", 2.34, 67, 37337, 2352626,1, -0.27, -0.3, -0.57));
+        SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
+        ArrayList<Coin> simulations = sim.getSimPort();
+        if(!simulations.contains(repo.searchCoin("BTC"))){
+            sim.changeVolume(repo.searchCoin("BTC"), 1);
+            sim.changeVolume(repo.searchCoin("ETH"), 9.234);
+        }
+
 
         ArrayList<Coin> coin = repo.getData();
 
