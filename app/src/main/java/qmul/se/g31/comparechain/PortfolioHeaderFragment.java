@@ -30,7 +30,6 @@ public class PortfolioHeaderFragment extends Fragment{
     }
 
     public void setData(){
-        System.out.println("HERE");
         SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
         NumberFormat priceFormatter = new DecimalFormat("$#,###.00");
 
@@ -44,4 +43,6 @@ public class PortfolioHeaderFragment extends Fragment{
             }
         });
     }
+
+
 }

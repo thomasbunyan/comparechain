@@ -47,12 +47,28 @@ public class SimulatedPortfolio {
         return true;
     }
 
-    public double getCoinWorth(Coin coin){
-        coin = repo.searchCoin(coin.getSymbol());
-        return coin.getPrice() * coinVolume.get(coin.getSymbol());
+    public void addCoin(Coin coin){
+        this.coinVolume.put(coin.getSymbol(), 0.0);
+        this.coinCost.put(coin.getSymbol(), 0.0);
+    }
+    public void removeCoin(Coin coin){
+        if(this.coinVolume.containsKey(coin.getSymbol())){
+            this.userFunds = this.userFunds + this.coinCost.remove(coin.getSymbol());
+            this.coinVolume.remove(coin.getSymbol());
+            this.coinCost.remove(coin.getSymbol());
+        }
+    }
+
+    public double getCoinCost(Coin coin){
+        return coinCost.get(coin.getSymbol());
     }
     public double getCoinVolume(Coin coin){
         return coinVolume.get(coin.getSymbol());
+    }
+
+    public double getCoinWorth(Coin coin){
+        coin = repo.searchCoin(coin.getSymbol());
+        return coin.getPrice() * coinVolume.get(coin.getSymbol());
     }
     public double getCoinProfit(Coin coin){
         coin = repo.searchCoin(coin.getSymbol());
@@ -67,6 +83,16 @@ public class SimulatedPortfolio {
         this.userFunds = funds;
     }
 
+    // For I/O purposes
+    public double getTotalCost(){
+        return this.cost;
+    }
+    public void setTotalCost(double cost){
+        this.cost = cost;
+    }
+    public void setCoinCost(Coin coin, double nPrice){
+        coinCost.replace(coin.getSymbol(), nPrice);
+    }
 
     public ArrayList<Coin> getSimPort(){
         ArrayList<String> simport = new ArrayList<String>(coinVolume.keySet());

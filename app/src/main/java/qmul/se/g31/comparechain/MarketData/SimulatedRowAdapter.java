@@ -1,8 +1,12 @@
 package qmul.se.g31.comparechain.MarketData;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -17,6 +21,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import qmul.se.g31.comparechain.ChangeBalanceDialog;
+import qmul.se.g31.comparechain.ConfDialog;
 import qmul.se.g31.comparechain.R;
 
 /**
@@ -52,7 +57,7 @@ public class SimulatedRowAdapter extends ArrayAdapter<Coin>{
             convertView = inflater.inflate(layout, parent, false);
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.favButton = (ImageView) convertView.findViewById(R.id.favoriteButton);
-            viewHolder.alertButton = (ImageView) convertView.findViewById(R.id.alertButton);
+            viewHolder.removeButton = (ImageView) convertView.findViewById(R.id.removeButton);
             viewHolder.balanceButton = (ImageView) convertView.findViewById(R.id.balanceButton);
             convertView.setTag(viewHolder);
         }
@@ -105,37 +110,81 @@ public class SimulatedRowAdapter extends ArrayAdapter<Coin>{
                 }
             }
         });
-        mainViewHolder.alertButton.setOnClickListener(new View.OnClickListener() {
+        mainViewHolder.removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Coin coin = repo.searchCoin(mObjects.get(position).getSymbol());
-                if(false){
-                    mainViewHolder.alertButton.setImageResource(R.drawable.ic_favorite_border);
-                }
-                else{
-                    mainViewHolder.alertButton.setImageResource(R.drawable.ic_favorite);
-                }
+                //openConfDialog(coin.getSymbol());
+                sim.removeCoin(coin);
+                mObjects.remove(position);
+                updatedData(mObjects);
             }
         });
         mainViewHolder.balanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Coin coin = repo.searchCoin(mObjects.get(position).getSymbol());
-                openDialog();
+                Coin coin = repo.searchCoin(mObjects.get(position).getSymbol());
+                openDialog(coin.getSymbol());
             }
         });
         return convertView;
     }
 
-    public void openDialog(){
-        FragmentManager fm = ((Activity) context).getFragmentManager();
+
+    private void openDialog(String sym){
+        Bundle args = new Bundle();
+        args.putString("coin", sym);
+
+        final FragmentManager fm = ((Activity) context).getFragmentManager();
         ChangeBalanceDialog balDialog = new ChangeBalanceDialog();
+
+        balDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                // Refresh.
+                updatedData(mObjects);
+            }
+        });
+        balDialog.setArguments(args);
         balDialog.show(fm, "FPM");
     }
 
+    private void openConfDialog(String sym){
+        Bundle args = new Bundle();
+        args.putString("coin", sym);
+
+        final FragmentManager fm = ((Activity) context).getFragmentManager();
+        ConfDialog balDialog = new ConfDialog();
+
+        balDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                // Refresh.
+                updatedData(mObjects);
+            }
+        });
+        balDialog.setArguments(args);
+        balDialog.show(fm, "YESNO");
+    }
+
+
+
+    public void updatedData(ArrayList<Coin> itemsArrayList) {
+//        this.clear();
+//        if (itemsArrayList != null){
+//            for (Coin c : itemsArrayList) {
+//                this.insert(c, this.getCount());
+//            }
+//        }
+        notifyDataSetChanged();
+
+    }
+
+
+
     public class ViewHolder {
         ImageView favButton;
-        ImageView alertButton;
+        ImageView removeButton;
         ImageView balanceButton;
     }
 }

@@ -73,14 +73,18 @@ public class FavoriteRowAdapter extends ArrayAdapter<Coin> {
             @Override
             public void onClick(View v) {
                 Coin coin = repo.searchCoin(mObjects.get(position).getSymbol());
-                if(coin.isFavorite()){
-                    mainViewHolder.favButton.setImageResource(R.drawable.ic_star_border_black_24dp);
-                    fav.removeFromFavorites(coin.getSymbol());
-                }
-                else{
-                    mainViewHolder.favButton.setImageResource(R.drawable.ic_menu_favorites);
-                    fav.addToFavorites(coin.getSymbol());
-                }
+                fav.removeFromFavorites(coin.getSymbol());
+                mObjects.remove(coin);
+                notifyDataSetChanged();
+                // Somewhat buggy.
+//                if(coin.isFavorite()){
+//                    mainViewHolder.favButton.setImageResource(R.drawable.ic_star_border_black_24dp);
+//                    fav.removeFromFavorites(coin.getSymbol());
+//                }
+//                else{
+//                    mainViewHolder.favButton.setImageResource(R.drawable.ic_menu_favorites);
+//                    fav.addToFavorites(coin.getSymbol());
+//                }
             }
         });
         return convertView;

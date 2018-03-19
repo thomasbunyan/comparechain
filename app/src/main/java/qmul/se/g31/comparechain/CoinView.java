@@ -35,21 +35,6 @@ public class CoinView extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_coins, container, false);
         Repository repo = Repository.getInstance();
-
-        // Testing data.
-        repo.updateCoin(new Coin("BTC", "Bitcoin", 30123.23, 34304300, 15844176, 1351351,1, 0.04, -0.3, -0.57));
-        repo.updateCoin(new Coin("TOM", "Thomas", 2352.53, 43535345, 454252, 67436346, 1, 0.02, -0.3, -0.57));
-        repo.updateCoin(new Coin("ETH", "Etherium", 5435.03, 4300, 346646, 3453, 1, -0.05, -0.3, -0.57));
-        repo.updateCoin(new Coin("OAG", "Anothercoin", 234.34, 3453, 7565, 6856346, 1, 0.13, -0.3, -0.57));
-        repo.updateCoin(new Coin("ARS", "Arsenalcoin", 2.34, 67, 37337, 2352626,1, -0.27, -0.3, -0.57));
-        SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
-        ArrayList<Coin> simulations = sim.getSimPort();
-        if(!simulations.contains(repo.searchCoin("BTC"))){
-            sim.changeVolume(repo.searchCoin("BTC"), 1);
-            sim.changeVolume(repo.searchCoin("ETH"), 9.234);
-        }
-
-
         ArrayList<Coin> coin = repo.getData();
 
         ListView myList = (ListView) view.findViewById(R.id.coinListView);

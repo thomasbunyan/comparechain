@@ -72,7 +72,7 @@
                     android:tint="@color/favoritecol"/>
 
                 <ImageView
-                    android:id="@+id/alertButton"
+                    android:id="@+id/removeButton"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_alignParentEnd="true"
@@ -80,7 +80,7 @@
                     android:focusable="false"
                     android:layout_marginStart="10dp"
                     android:layout_gravity="center_vertical"
-                    app:srcCompat="@drawable/ic_favorite_border"
+                    app:srcCompat="@drawable/ic_remove_circle"
                     android:tint="@color/alert"/>
 
                 <ImageView

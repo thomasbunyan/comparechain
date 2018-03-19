@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -24,7 +25,7 @@ import qmul.se.g31.comparechain.ViewCoinWindow.ViewCoinWindow;
  * Created by Thomas on 12/03/2018.
  */
 
-public class PortfolioView extends Fragment {
+public class PortfolioView extends Fragment{
 
     View view;
     ArrayList<Coin> simulations;
@@ -58,9 +59,16 @@ public class PortfolioView extends Fragment {
         return view;
     }
 
+
+
     @Override
     public void onResume() {
         super.onResume();
+        PortfolioHeaderFragment data = (PortfolioHeaderFragment) getChildFragmentManager().findFragmentById(R.id.simHeader);
+        data.setData();
+        SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
+        simulations = sim.getSimPort();
+
         ListView myList = (ListView) view.findViewById(R.id.simList);
         ListAdapter myAdapter = new SimulatedRowAdapter(getContext(), R.layout.simulate_list_row, simulations);
         myList.setAdapter(myAdapter);
