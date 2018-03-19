@@ -8,11 +8,13 @@ public class Favorites {
     public static Favorites instance;
     private Repository repo;
     private ArrayList<String> coins;
+    private ArrayList<Alert> alerts;
 
     public Favorites(){
         instance = this;
         this.repo = Repository.getInstance();
         this.coins = new ArrayList<String>();
+        this.alerts = new ArrayList<Alert>();
     }
     
     // Pass a coin which is added to list of favorites and flags the coin as favorite.
@@ -39,6 +41,40 @@ public class Favorites {
             if(toAdd != null) c.add(toAdd);
         }
         return c;
+    }
+
+    // Updates/Adds alert to an item in the favs.
+    public void updateAlert(Alert alert){
+        for(int i = 0; i < alerts.size(); i++){
+            if(alerts.get(i).getSymbol().equals(alert.getSymbol())) {
+                alerts.set(i, alert);
+                return;
+            }
+        }
+        alerts.add(alert);
+    }
+
+    // Removes alert.
+    public void removeAlert(String symbol){
+        for(int i = 0; i < alerts.size(); i++){
+            if(alerts.get(i).getSymbol().equals(symbol)) {
+                alerts.remove(i);
+                return;
+            }
+        }
+    }
+
+    public boolean hasAlert(String symbol){
+        for(int i = 0; i < alerts.size(); i++){
+            if(alerts.get(i).getSymbol().equals(symbol)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<Alert> getAlerts(){
+        return this.alerts;
     }
     
     // Singleton method to return instance.

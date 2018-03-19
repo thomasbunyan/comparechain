@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -178,6 +179,10 @@ public class SimulatedRowAdapter extends ArrayAdapter<Coin>{
 //        }
         notifyDataSetChanged();
 
+        Intent i = new Intent();
+        i.setAction("qmul.se.g31.refreshfrag");
+        i.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        context.sendBroadcast(i);
     }
 
 

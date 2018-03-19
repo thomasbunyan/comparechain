@@ -1,10 +1,12 @@
 package qmul.se.g31.comparechain;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import org.json.simple.JSONArray;
@@ -32,6 +36,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
+import qmul.se.g31.comparechain.MarketData.Alert;
 import qmul.se.g31.comparechain.MarketData.Coin;
 import qmul.se.g31.comparechain.MarketData.Favorites;
 import qmul.se.g31.comparechain.MarketData.Repository;
@@ -83,6 +88,7 @@ public class MainWindowActivity extends AppCompatActivity
         Favorites fav = Favorites.getInstance();
         ArrayList<Coin> coins = sim.getSimPort();
         ArrayList<Coin> favorites = fav.getFavorites();
+        ArrayList<Alert> alerts = fav.getAlerts();
 
         JSONObject savedData = new JSONObject();
 
@@ -113,9 +119,18 @@ public class MainWindowActivity extends AppCompatActivity
         JSONArray favArray = new JSONArray();
         for(int i = 0; i < favorites.size(); i++){
             favArray.add(favorites.get(i).getSymbol());
-            // In here for alerts.
         }
         favObj.put("favorites", favArray);
+
+        JSONArray alertArray = new JSONArray();
+        for(int i = 0; i < alerts.size(); i++){
+            JSONObject alertObj = new JSONObject();
+            alertObj.put("symbol", alerts.get(i).getSymbol());
+            alertObj.put("max", alerts.get(i).getMax());
+            alertObj.put("min", alerts.get(i).getMin());
+            alertArray.add(alertObj);
+        }
+        favObj.put("alertData", alertArray);
 
         favData.add(favObj);
         savedData.put("favoritesSave", favData);
@@ -137,6 +152,7 @@ public class MainWindowActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         System.out.println("RESUME  RESUME  RESUME");
+
         Repository repo = Repository.getInstance();
         SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
         Favorites fav = Favorites.getInstance();
@@ -183,6 +199,16 @@ public class MainWindowActivity extends AppCompatActivity
                 fav.addToFavorites((String) favorites.get(i));
             }
 
+            JSONArray alerts = (JSONArray) fjsonObject.get("alertData");
+            for(int i = 0; i < alerts.size(); i++){
+                JSONObject alert = (JSONObject) alerts.get(i);
+                String symbol = (String) alert.get("symbol").toString();
+                String max = (String) alert.get("max").toString();
+                String min = (String) alert.get("min").toString();
+
+                fav.updateAlert(new Alert(symbol, Double.parseDouble(max), Double.parseDouble(min)));
+            }
+
         }
         catch(FileNotFoundException e){
             e.printStackTrace();
@@ -210,8 +236,7 @@ public class MainWindowActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_window, menu);
+        getMenuInflater().inflate(R.menu.main_window_search, menu);
         return true;
     }
 
@@ -223,7 +248,7 @@ public class MainWindowActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (true) {
             return true;
         }
 

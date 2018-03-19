@@ -1,6 +1,10 @@
 package qmul.se.g31.comparechain;
 
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -44,5 +48,20 @@ public class PortfolioHeaderFragment extends Fragment{
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("qmul.se.g31.refreshfrag");
+        MyBroadcastReceiver receiver = new MyBroadcastReceiver();
+        getActivity().registerReceiver(receiver, intentFilter);
+    }
+
+    private class MyBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            setData();// update your textView in the main layout
+        }
+    }
 
 }
