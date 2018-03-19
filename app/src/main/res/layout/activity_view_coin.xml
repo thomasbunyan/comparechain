@@ -23,15 +23,16 @@
         android:layout_below="@+id/coinDataFragment"
         tools:layout="@layout/fragment_view_coin_actions"/>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textSize="90dp"
+    <fragment
+        android:id="@+id/coinGraphFragment"
+        android:name="qmul.se.g31.comparechain.ViewCoinWindow.CoinGraphFragment"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/coinFavoriteFragment"
-        android:text="GRAPH IN HERE" />
-
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        tools:layout="@layout/fragment_view_coin_graph"/>
 
 </RelativeLayout>
