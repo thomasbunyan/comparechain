@@ -271,9 +271,16 @@ public class MainWindowActivity extends AppCompatActivity
         } else if (id == R.id.nav_portfolio) {
             setTitle("Simulated Portfolio");
             fragmentManager.beginTransaction().replace(R.id.content_frame, new PortfolioView()).commit();
-        } else if (id == R.id.nav_news) {
+        } else if(id == R.id.nav_priceConverter) {
+            setTitle("Price Converter");
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new PriceConverter()).commit();
+
+        }
+        else if (id == R.id.nav_news) {
             setTitle("News");
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new NewsView()).commit();
+            //NewsView newsFragment = new NewsView();
+            //android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame , new NewsView()).commit();
         } else if (id == R.id.nav_tools) {
             setTitle("Tools");
             fragmentManager.beginTransaction().replace(R.id.content_frame, new ToolsView()).commit();

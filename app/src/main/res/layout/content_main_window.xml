@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="qmul.se.g31.comparechain.MainWindowActivity"
     tools:showIn="@layout/app_bar_main_window">
-    
+
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"

@@ -21,4 +21,7 @@ public class ToolsView extends Fragment {
         view = inflater.inflate(R.layout.activity_tools, container, false);
         return view;
     }
+
+
+
 }
