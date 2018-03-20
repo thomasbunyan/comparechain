@@ -28,7 +28,7 @@ import qmul.se.g31.comparechain.ViewCoinWindow.ViewCoinWindow;
 public class PortfolioView extends Fragment{
 
     View view;
-    ArrayList<Coin> simulations;
+    //ArrayList<Coin> simulations;
 
     @Nullable
     @Override
@@ -38,10 +38,10 @@ public class PortfolioView extends Fragment{
         PortfolioHeaderFragment data = (PortfolioHeaderFragment) getChildFragmentManager().findFragmentById(R.id.simHeader);
         data.setData();
         SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
-        simulations = sim.getSimPort();
+        //simulations = sim.getSimPort();
 
         ListView myList = (ListView) view.findViewById(R.id.simList);
-        ListAdapter myAdapter = new SimulatedRowAdapter(getContext(), R.layout.simulate_list_row, simulations);
+        ListAdapter myAdapter = new SimulatedRowAdapter(getContext(), R.layout.simulate_list_row, sim.getSimPort());
         myList.setAdapter(myAdapter);
 
         myList.setOnItemClickListener(
@@ -67,10 +67,10 @@ public class PortfolioView extends Fragment{
         PortfolioHeaderFragment data = (PortfolioHeaderFragment) getChildFragmentManager().findFragmentById(R.id.simHeader);
         data.setData();
         SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
-        simulations = sim.getSimPort();
+        //simulations = sim.getSimPort();
 
         ListView myList = (ListView) view.findViewById(R.id.simList);
-        ListAdapter myAdapter = new SimulatedRowAdapter(getContext(), R.layout.simulate_list_row, simulations);
+        ListAdapter myAdapter = new SimulatedRowAdapter(getContext(), R.layout.simulate_list_row, sim.getSimPort());
         myList.setAdapter(myAdapter);
     }
 }

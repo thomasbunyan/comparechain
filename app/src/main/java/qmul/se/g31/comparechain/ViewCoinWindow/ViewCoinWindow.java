@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import qmul.se.g31.comparechain.MarketData.Coin;
+import qmul.se.g31.comparechain.MarketData.Repository;
 import qmul.se.g31.comparechain.R;
 
 /**
@@ -22,9 +23,12 @@ public class ViewCoinWindow extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_view_coin);
+        Repository repo = Repository.getInstance();
 
         Intent intent = getIntent();
         Coin coin = (Coin)intent.getSerializableExtra("coin");
+
+        coin = repo.searchCoin(coin.getSymbol());
 
         ActionsCoinFragment actions = (ActionsCoinFragment) getSupportFragmentManager().findFragmentById(R.id.coinFavoriteFragment);
         actions.setCoin(coin);
