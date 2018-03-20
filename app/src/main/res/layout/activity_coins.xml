@@ -2,13 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <SearchView
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background"
+        android:queryBackground="@android:color/transparent"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        />
+
     <LinearLayout
         android:id="@+id/coinListHeading"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/greyHeader"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/searchBar"
         android:orientation="horizontal">
 
         <TextView
@@ -36,6 +49,8 @@
             android:layout_marginTop="10dp"
             android:text="Change" />
     </LinearLayout>
+
+
 
     <View
         android:id="@+id/breakLine"

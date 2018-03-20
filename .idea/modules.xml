@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CompareChain.iml" filepath="$PROJECT_DIR$/CompareChain.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/comparechain.iml" filepath="$PROJECT_DIR$/comparechain.iml" />
     </modules>
   </component>
 </project>
