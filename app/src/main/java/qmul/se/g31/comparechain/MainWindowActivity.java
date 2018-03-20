@@ -284,9 +284,6 @@ public class MainWindowActivity extends AppCompatActivity
         } else if (id == R.id.nav_tools) {
             setTitle("Tools");
             fragmentManager.beginTransaction().replace(R.id.content_frame, new ToolsView()).commit();
-        } else if (id == R.id.nav_settings) {
-            setTitle("Settings");
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new SettingsView()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
