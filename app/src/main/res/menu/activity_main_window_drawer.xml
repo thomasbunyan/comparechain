@@ -19,7 +19,7 @@
             android:title="Simulated Portfolio" />
         <item
             android:id="@+id/nav_priceConverter"
-            android:icon="@drawable/ic_menu_portfolio"
+            android:icon="@drawable/ic_menu_compare"
             android:title="Price Converter" />
         <item
             android:id="@+id/nav_news"

@@ -220,12 +220,15 @@ public class PriceConverter extends Fragment {
         }
 //
         else if(toSpinner.getItems().get(toSpinner.getSelectedIndex()).toString().equals("USD")){
+            Picasso.with(getActivity()).load("http://www.iconsplace.com/white-icons/android-2-icon").into(coinImage);
             toTextView.setText("$ "+value);
         }
         else if(toSpinner.getItems().get(toSpinner.getSelectedIndex()).toString().equals("EUR")){
+            Picasso.with(getActivity()).load("http://www.iconsplace.com/white-icons/android-2-icon").into(coinImage);
             toTextView.setText("€ "+value);
         }
         else if(toSpinner.getItems().get(toSpinner.getSelectedIndex()).toString().equals("GBP")){
+            Picasso.with(getActivity()).load("http://www.iconsplace.com/white-icons/android-2-icon").into(coinImage);
             toTextView.setText("£ "+value);
         }
     }
