@@ -1,6 +1,6 @@
 
-package qmul.se.g31.comparechain.MarketData;
+package qmul.se.g31.comparechain.DataClasses;
 
-public enum SortType {
+public enum ComparisonType {
     NAME, PRICE, MARKETCAP, SUPPLY, RANK, PERCENT1H, PERCENT24H, PERCENT7D
 }

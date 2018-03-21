@@ -1,4 +1,4 @@
-package qmul.se.g31.comparechain.MarketData;
+package qmul.se.g31.comparechain.GUIClasses.Dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,6 +14,10 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import qmul.se.g31.comparechain.DataClasses.Alert;
+import qmul.se.g31.comparechain.DataClasses.Coin;
+import qmul.se.g31.comparechain.DataClasses.Favorites;
+import qmul.se.g31.comparechain.DataClasses.Repository;
 import qmul.se.g31.comparechain.R;
 
 /**

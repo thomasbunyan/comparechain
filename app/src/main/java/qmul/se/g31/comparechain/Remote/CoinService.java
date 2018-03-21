@@ -1,6 +1,6 @@
 package qmul.se.g31.comparechain.Remote;
 
-import qmul.se.g31.comparechain.MarketData.CoinObjects;
+import qmul.se.g31.comparechain.DataClasses.CoinObjects;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

@@ -1,5 +1,5 @@
 
-package qmul.se.g31.comparechain.MarketData;
+package qmul.se.g31.comparechain.DataClasses;
 
 import java.util.ArrayList;
 

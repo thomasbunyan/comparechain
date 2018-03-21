@@ -1,5 +1,5 @@
 
-package qmul.se.g31.comparechain.MarketData;
+package qmul.se.g31.comparechain.DataClasses;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +48,7 @@ public class Repository {
     }
     
     // Returns arraylist of Coins in the repo, with the option to have them sorted.
-    public ArrayList<Coin> getData(SortTypeComparator c){
+    public ArrayList<Coin> getData(ComparisonComparator c){
         ArrayList<Coin> coins = new ArrayList<Coin>(repo.values());
         coins.sort(c);
         return coins;

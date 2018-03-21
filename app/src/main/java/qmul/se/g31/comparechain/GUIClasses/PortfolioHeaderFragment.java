@@ -1,4 +1,4 @@
-package qmul.se.g31.comparechain;
+package qmul.se.g31.comparechain.GUIClasses;
 
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
@@ -16,7 +16,8 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import qmul.se.g31.comparechain.MarketData.SimulatedPortfolio;
+import qmul.se.g31.comparechain.DataClasses.SimulatedPortfolio;
+import qmul.se.g31.comparechain.R;
 
 /**
  * Created by Thomas on 17/03/2018.

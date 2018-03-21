@@ -1,4 +1,4 @@
-package qmul.se.g31.comparechain;
+package qmul.se.g31.comparechain.GUIClasses;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import qmul.se.g31.comparechain.R;
 
 /**
  * Created by Thomas on 12/03/2018.

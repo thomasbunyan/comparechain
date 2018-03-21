@@ -1,4 +1,4 @@
-package qmul.se.g31.comparechain;
+package qmul.se.g31.comparechain.GUIClasses.RowAdapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,13 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
-import qmul.se.g31.comparechain.MarketData.Coin;
+import qmul.se.g31.comparechain.DataClasses.Coin;
+import qmul.se.g31.comparechain.R;
 
 /**
  * Created by Thomas on 14/03/2018.
  */
 
-class CoinRowAdapter extends ArrayAdapter<Coin>{
+public class CoinRowAdapter extends ArrayAdapter<Coin>{
 
     public CoinRowAdapter(@NonNull Context context, ArrayList<Coin> resource) {
         super(context, R.layout.coin_list_row, resource);

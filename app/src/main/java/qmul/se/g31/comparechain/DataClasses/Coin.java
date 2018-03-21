@@ -1,7 +1,8 @@
 
-package qmul.se.g31.comparechain.MarketData;
+package qmul.se.g31.comparechain.DataClasses;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Coin implements Serializable{
     
@@ -15,9 +16,10 @@ public class Coin implements Serializable{
     private double percent1h;
     private double percent24h;
     private double percent7d;
+    private Graph[] graphs;
     private boolean favorite;
     
-    public Coin(String symbol, String name, double price, long marketcap, long supply, long volume,int rank, double percent1h, double percent24h, double percent7d){
+    public Coin(String symbol, String name, double price, long marketcap, long supply, long volume,int rank, double percent1h, double percent24h, double percent7d, ArrayList<Double> graphData){
         this.symbol = symbol;
         this.name = name;
         this.price = price;
@@ -28,6 +30,8 @@ public class Coin implements Serializable{
         this.percent1h = percent1h;
         this.percent24h = percent24h;
         this.percent7d = percent7d;
+        this.graphs = new Graph[3];
+        this.graphs[0] = new Graph(GraphType.LINE, graphData);
         this.favorite = false;
     }
 
@@ -60,6 +64,9 @@ public class Coin implements Serializable{
     }
     public double getPercent7d(){
         return this.percent7d;
+    }
+    public Graph getGraph(){
+        return this.graphs[0];
     }
     public boolean isFavorite(){
         return this.favorite;

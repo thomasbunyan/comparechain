@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ViewCoinWindow.ViewCoinWindow"
+            android:name=".GUIClasses.ViewCoinWindow.ViewCoinWindow"
             android:label="@string/app_name">
         </activity>
     </application>

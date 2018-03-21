@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ViewCoinWindow.ViewCoinWindow">
+    tools:context=".GUIClasses.ViewCoinWindow.ViewCoinWindow">
 
 
     <fragment
         android:id="@+id/coinDataFragment"
-        android:name="qmul.se.g31.comparechain.ViewCoinWindow.CoinDataFragment"
+        android:name="qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.CoinDataFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/coinFavoriteFragment"
-        android:name="qmul.se.g31.comparechain.ViewCoinWindow.ActionsCoinFragment"
+        android:name="qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.ActionsCoinFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/coinDataFragment"
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/coinGraphFragment"
-        android:name="qmul.se.g31.comparechain.ViewCoinWindow.CoinGraphFragment"
+        android:name="qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.CoinGraphFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/coinFavoriteFragment"

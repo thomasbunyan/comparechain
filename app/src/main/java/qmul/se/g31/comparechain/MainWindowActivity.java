@@ -1,13 +1,7 @@
 package qmul.se.g31.comparechain;
 
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.MenuItemCompat;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,8 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import org.json.simple.JSONArray;
@@ -27,8 +19,6 @@ import org.json.simple.parser.JSONParser;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -36,11 +26,17 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-import qmul.se.g31.comparechain.MarketData.Alert;
-import qmul.se.g31.comparechain.MarketData.Coin;
-import qmul.se.g31.comparechain.MarketData.Favorites;
-import qmul.se.g31.comparechain.MarketData.Repository;
-import qmul.se.g31.comparechain.MarketData.SimulatedPortfolio;
+import qmul.se.g31.comparechain.DataClasses.Alert;
+import qmul.se.g31.comparechain.DataClasses.Coin;
+import qmul.se.g31.comparechain.DataClasses.Favorites;
+import qmul.se.g31.comparechain.DataClasses.Repository;
+import qmul.se.g31.comparechain.DataClasses.SimulatedPortfolio;
+import qmul.se.g31.comparechain.GUIClasses.CoinView;
+import qmul.se.g31.comparechain.GUIClasses.FavoritesView;
+import qmul.se.g31.comparechain.GUIClasses.NewsView;
+import qmul.se.g31.comparechain.GUIClasses.PortfolioView;
+import qmul.se.g31.comparechain.GUIClasses.PriceConverterWindow.PriceConverter;
+import qmul.se.g31.comparechain.GUIClasses.ToolsView;
 
 public class MainWindowActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,12 +47,15 @@ public class MainWindowActivity extends AppCompatActivity
 
         Repository repo = Repository.getInstance();
 
+        ArrayList<Double> a = new ArrayList<Double>();
+        for(int i = 0; i < 30; i++) a.add((double)i);
+
         // Testing data.
-        repo.updateCoin(new Coin("BTC", "Bitcoin", 30123.23, 34304300, 15844176, 1351351,1, 0.04, -0.3, -0.57));
-        repo.updateCoin(new Coin("TOM", "Thomas", 2352.53, 43535345, 454252, 67436346, 1, 0.02, -0.3, -0.57));
-        repo.updateCoin(new Coin("ETH", "Etherium", 5435.03, 4300, 346646, 3453, 1, -0.05, -0.3, -0.57));
-        repo.updateCoin(new Coin("OAG", "Anothercoin", 234.34, 3453, 7565, 6856346, 1, 0.13, -0.3, -0.57));
-        repo.updateCoin(new Coin("ARS", "Arsenalcoin", 2.34, 67, 37337, 2352626,1, -0.27, -0.3, -0.57));
+        repo.updateCoin(new Coin("BTC", "Bitcoin", 30123.23, 34304300, 15844176, 1351351,1, 0.04, -0.3, -0.57, a));
+        repo.updateCoin(new Coin("TOM", "Thomas", 2352.53, 43535345, 454252, 67436346, 1, 0.02, -0.3, -0.57, a));
+        repo.updateCoin(new Coin("ETH", "Etherium", 5435.03, 4300, 346646, 3453, 1, -0.05, -0.3, -0.57, a));
+        repo.updateCoin(new Coin("OAG", "Anothercoin", 234.34, 3453, 7565, 6856346, 1, 0.13, -0.3, -0.57, a));
+        repo.updateCoin(new Coin("ARS", "Arsenalcoin", 2.34, 67, 37337, 2352626,1, -0.27, -0.3, -0.57, a));
 
 
         setContentView(R.layout.activity_main_window);

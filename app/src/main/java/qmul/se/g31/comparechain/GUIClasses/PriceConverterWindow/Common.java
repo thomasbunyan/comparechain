@@ -1,4 +1,4 @@
-package qmul.se.g31.comparechain;
+package qmul.se.g31.comparechain.GUIClasses.PriceConverterWindow;
 
 import qmul.se.g31.comparechain.Remote.CoinService;
 import qmul.se.g31.comparechain.Remote.RetrofitClient;

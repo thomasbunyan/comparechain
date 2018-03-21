@@ -1,15 +1,13 @@
 
-package qmul.se.g31.comparechain.MarketData;
+package qmul.se.g31.comparechain.DataClasses;
 
-import qmul.se.g31.comparechain.MarketData.SortType;
 import java.util.Comparator;
-import qmul.se.g31.comparechain.MarketData.Coin;
 
-public class SortTypeComparator implements Comparator<Coin>{
+public class ComparisonComparator implements Comparator<Coin>{
     
-    private SortType type;
+    private ComparisonType type;
     
-    public SortTypeComparator(SortType type){
+    public ComparisonComparator(ComparisonType type){
         this.type = type;
     }
 

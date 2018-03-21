@@ -1,34 +1,29 @@
-package qmul.se.g31.comparechain;
+package qmul.se.g31.comparechain.GUIClasses;
 
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import qmul.se.g31.comparechain.MarketData.Coin;
-import qmul.se.g31.comparechain.MarketData.Repository;
-import qmul.se.g31.comparechain.MarketData.SimulatedPortfolio;
-import qmul.se.g31.comparechain.ViewCoinWindow.ViewCoinWindow;
+import qmul.se.g31.comparechain.DataClasses.Coin;
+import qmul.se.g31.comparechain.DataClasses.Repository;
+import qmul.se.g31.comparechain.GUIClasses.RowAdapters.CoinRowAdapter;
+import qmul.se.g31.comparechain.R;
+import qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.ViewCoinWindow;
 
 /**
  * Created by Thomas on 12/03/2018.

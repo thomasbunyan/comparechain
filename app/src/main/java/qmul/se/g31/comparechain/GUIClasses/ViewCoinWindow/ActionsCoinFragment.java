@@ -1,14 +1,12 @@
-package qmul.se.g31.comparechain.ViewCoinWindow;
+package qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow;
 
 import android.support.v4.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,15 +15,13 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Serializable;
 import java.util.ArrayList;
 
-import qmul.se.g31.comparechain.MainWindowActivity;
-import qmul.se.g31.comparechain.MarketData.Alert;
-import qmul.se.g31.comparechain.MarketData.Coin;
-import qmul.se.g31.comparechain.MarketData.Favorites;
-import qmul.se.g31.comparechain.MarketData.Repository;
-import qmul.se.g31.comparechain.MarketData.SimulatedPortfolio;
+import qmul.se.g31.comparechain.DataClasses.Alert;
+import qmul.se.g31.comparechain.DataClasses.Coin;
+import qmul.se.g31.comparechain.DataClasses.Favorites;
+import qmul.se.g31.comparechain.DataClasses.Repository;
+import qmul.se.g31.comparechain.DataClasses.SimulatedPortfolio;
 import qmul.se.g31.comparechain.R;
 
 import static android.content.Context.MODE_PRIVATE;

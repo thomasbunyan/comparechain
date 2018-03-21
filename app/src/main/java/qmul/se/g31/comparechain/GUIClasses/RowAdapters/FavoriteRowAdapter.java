@@ -1,10 +1,9 @@
-package qmul.se.g31.comparechain.MarketData;
+package qmul.se.g31.comparechain.GUIClasses.RowAdapters;
 
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
-import qmul.se.g31.comparechain.ChangeBalanceDialog;
+import qmul.se.g31.comparechain.DataClasses.Coin;
+import qmul.se.g31.comparechain.DataClasses.Favorites;
+import qmul.se.g31.comparechain.DataClasses.Repository;
+import qmul.se.g31.comparechain.GUIClasses.Dialog.UpdateAlertDialog;
 import qmul.se.g31.comparechain.R;
 
 /**

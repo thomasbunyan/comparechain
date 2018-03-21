@@ -1,15 +1,12 @@
-package qmul.se.g31.comparechain.ViewCoinWindow;
+package qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import qmul.se.g31.comparechain.MarketData.Coin;
-import qmul.se.g31.comparechain.MarketData.Repository;
+import qmul.se.g31.comparechain.DataClasses.Coin;
+import qmul.se.g31.comparechain.DataClasses.Repository;
 import qmul.se.g31.comparechain.R;
 
 /**
@@ -23,17 +20,18 @@ public class ViewCoinWindow extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_view_coin);
-        Repository repo = Repository.getInstance();
 
+        Repository repo = Repository.getInstance();
         Intent intent = getIntent();
         Coin coin = (Coin)intent.getSerializableExtra("coin");
-
         coin = repo.searchCoin(coin.getSymbol());
 
         ActionsCoinFragment actions = (ActionsCoinFragment) getSupportFragmentManager().findFragmentById(R.id.coinFavoriteFragment);
         actions.setCoin(coin);
         CoinDataFragment data = (CoinDataFragment) getSupportFragmentManager().findFragmentById(R.id.coinDataFragment);
         data.setData(coin);
+        CoinGraphFragment graph = (CoinGraphFragment) getSupportFragmentManager().findFragmentById(R.id.coinGraphFragment);
+        graph.setData(coin);
     }
 
     @Override

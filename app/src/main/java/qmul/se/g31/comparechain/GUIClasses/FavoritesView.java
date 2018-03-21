@@ -1,4 +1,4 @@
-package qmul.se.g31.comparechain;
+package qmul.se.g31.comparechain.GUIClasses;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -11,9 +11,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import qmul.se.g31.comparechain.MarketData.Coin;
-import qmul.se.g31.comparechain.MarketData.FavoriteRowAdapter;
-import qmul.se.g31.comparechain.MarketData.Favorites;
+import qmul.se.g31.comparechain.DataClasses.Coin;
+import qmul.se.g31.comparechain.GUIClasses.RowAdapters.FavoriteRowAdapter;
+import qmul.se.g31.comparechain.DataClasses.Favorites;
+import qmul.se.g31.comparechain.R;
 
 /**
  * Created by Thomas on 12/03/2018.

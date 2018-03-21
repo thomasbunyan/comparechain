@@ -1,9 +1,7 @@
-package qmul.se.g31.comparechain.MarketData;
+package qmul.se.g31.comparechain.GUIClasses.RowAdapters;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,8 +19,12 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-import qmul.se.g31.comparechain.ChangeBalanceDialog;
-import qmul.se.g31.comparechain.ConfDialog;
+import qmul.se.g31.comparechain.GUIClasses.Dialog.ChangeBalanceDialog;
+import qmul.se.g31.comparechain.GUIClasses.Dialog.ConfDialog;
+import qmul.se.g31.comparechain.DataClasses.Coin;
+import qmul.se.g31.comparechain.DataClasses.Favorites;
+import qmul.se.g31.comparechain.DataClasses.Repository;
+import qmul.se.g31.comparechain.DataClasses.SimulatedPortfolio;
 import qmul.se.g31.comparechain.R;
 
 /**

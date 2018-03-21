@@ -1,4 +1,4 @@
-package qmul.se.g31.comparechain;
+package qmul.se.g31.comparechain.GUIClasses.PriceConverterWindow;
 
 
 import android.support.annotation.Nullable;
@@ -18,7 +18,8 @@ import android.widget.TextView;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.squareup.picasso.Picasso;
 
-import qmul.se.g31.comparechain.MarketData.CoinObjects;
+import qmul.se.g31.comparechain.DataClasses.CoinObjects;
+import qmul.se.g31.comparechain.R;
 import qmul.se.g31.comparechain.Remote.CoinService;
 import retrofit2.Call;
 import retrofit2.Callback;

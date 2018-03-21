@@ -1,4 +1,4 @@
-package qmul.se.g31.comparechain.MarketData;
+package qmul.se.g31.comparechain.DataClasses;
 
 /**
  * Created by Thomas on 19/03/2018.

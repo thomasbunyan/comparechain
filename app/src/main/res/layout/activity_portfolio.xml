@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/simHeader"
-        android:name="qmul.se.g31.comparechain.PortfolioHeaderFragment"
+        android:name="qmul.se.g31.comparechain.GUIClasses.PortfolioHeaderFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_portfolio_header" />

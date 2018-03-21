@@ -1,4 +1,4 @@
-package qmul.se.g31.comparechain.ViewCoinWindow;
+package qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow;
 
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import qmul.se.g31.comparechain.MarketData.Coin;
-import qmul.se.g31.comparechain.MarketData.Repository;
+import qmul.se.g31.comparechain.DataClasses.Coin;
+import qmul.se.g31.comparechain.DataClasses.Repository;
 import qmul.se.g31.comparechain.R;
 
 /**
@@ -50,6 +50,8 @@ public class CoinDataFragment extends Fragment{
     }
 
     public void setData(Coin c){
+        Repository repo = Repository.getInstance();
+        c = repo.searchCoin(c.getSymbol());
         getActivity().setTitle(c.getName());
 
         NumberFormat bitFormatter = new DecimalFormat("#0.00000000");
