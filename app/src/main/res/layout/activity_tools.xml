@@ -3,10 +3,172 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Tools" />
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="25dp"
+        android:text="Select two coins from your favorites to compare!" />
+
+    <Spinner
+        android:id="@+id/coinOne"
+        android:layout_below="@+id/title"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_marginStart="10dp" />
+
+    <Spinner
+        android:id="@+id/coinTwo"
+        android:layout_below="@+id/title"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp" />
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/coinOne"
+        android:stretchColumns="0,1,2">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/priceA"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="Price" />
+
+            <TextView
+                android:id="@+id/priceDiff"
+                android:padding="8dip"
+                android:gravity="center"
+                android:text="Price Difference" />
+
+            <TextView
+                android:id="@+id/priceB"
+                android:padding="8dip"
+                android:gravity="center"
+                android:text="Price" />
+
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/marketcapA"
+                android:padding="8dip"
+                android:gravity="center"
+                android:text="Market Cap" />
+
+            <TextView
+                android:id="@+id/mcapDiff"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="Market Cap Difference" />
+
+            <TextView
+                android:id="@+id/marketcapB"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="Market Cap" />
+
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/rankA"
+                android:padding="8dip"
+                android:gravity="center"
+                android:text="Rank" />
+
+
+            <TextView
+                android:id="@+id/rankDiff"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="Rank Difference" />
+
+            <TextView
+                android:id="@+id/rankB"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="Rank" />
+
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/percent1HA"
+                android:padding="8dip"
+                android:gravity="center"
+                android:text="Percent1H" />
+
+            <TextView
+                android:id="@+id/p1HDiff"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="Percent1H Difference" />
+
+            <TextView
+                android:id="@+id/percent1HB"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="Percent1H" />
+
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/percent24HA"
+                android:padding="8dip"
+                android:gravity="center"
+                android:text="Percent24H" />
+
+            <TextView
+                android:id="@+id/p24HDiff"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="Percent24H Difference" />
+
+            <TextView
+                android:id="@+id/percent24HB"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="Percent24H" />
+
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/percent7DA"
+                android:padding="8dip"
+                android:gravity="center"
+                android:text="Percent7D" />
+
+            <TextView
+                android:id="@+id/p7DDiff"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="Percent7D Difference" />
+
+            <TextView
+                android:id="@+id/percent7DB"
+                android:gravity="center"
+                android:padding="8dip"
+                android:text="Percent7D" />
+
+        </TableRow>
+    </TableLayout>
 </RelativeLayout>
