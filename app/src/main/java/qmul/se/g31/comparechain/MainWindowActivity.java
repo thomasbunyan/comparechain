@@ -1,6 +1,7 @@
 package qmul.se.g31.comparechain;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,6 +30,8 @@ import java.util.ArrayList;
 import qmul.se.g31.comparechain.DataClasses.Alert;
 import qmul.se.g31.comparechain.DataClasses.Coin;
 import qmul.se.g31.comparechain.DataClasses.Favorites;
+import qmul.se.g31.comparechain.DataClasses.HistoricalData;
+import qmul.se.g31.comparechain.DataClasses.MarketData;
 import qmul.se.g31.comparechain.DataClasses.Repository;
 import qmul.se.g31.comparechain.DataClasses.SimulatedPortfolio;
 import qmul.se.g31.comparechain.GUIClasses.CoinView;
@@ -45,18 +48,10 @@ public class MainWindowActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Repository repo = Repository.getInstance();
+        Intent in = new Intent(this, MarketData.class);
+        startService(in);
 
-        ArrayList<Double> a = new ArrayList<Double>();
-        for(int i = 0; i < 30; i++) a.add((double)i);
-
-        // Testing data.
-        repo.updateCoin(new Coin("BTC", "Bitcoin", 30123.23, 34304300, 15844176, 1351351,1, 0.04, -0.3, -0.57, a));
-        repo.updateCoin(new Coin("TOM", "Thomas", 2352.53, 43535345, 454252, 67436346, 1, 0.02, -0.3, -0.57, a));
-        repo.updateCoin(new Coin("ETH", "Etherium", 5435.03, 4300, 346646, 3453, 1, -0.05, -0.3, -0.57, a));
-        repo.updateCoin(new Coin("OAG", "Anothercoin", 234.34, 3453, 7565, 6856346, 1, 0.13, -0.3, -0.57, a));
-        repo.updateCoin(new Coin("ARS", "Arsenalcoin", 2.34, 67, 37337, 2352626,1, -0.27, -0.3, -0.57, a));
-
+        getData();
 
         setContentView(R.layout.activity_main_window);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -220,6 +215,41 @@ public class MainWindowActivity extends AppCompatActivity
         catch(Exception e){
             e.printStackTrace();
             Toast.makeText(MainWindowActivity.this, "Other exception", Toast.LENGTH_SHORT);
+        }
+    }
+
+    // Gets the coins from the stored file and loads them into the repository.
+    public void getData(){
+        JSONParser parser = new JSONParser();
+        Repository repo = Repository.getInstance();
+
+        try{
+            InputStream os = openFileInput("coinsave.json");
+            BufferedReader file = new BufferedReader(new InputStreamReader(os));
+            Object obj = parser.parse(file);
+            JSONArray jsonData = (JSONArray) obj;
+
+            for(int i = 0; i < jsonData.size(); i++){
+                JSONObject currentCoin = (JSONObject) jsonData.get(i);
+                String name = currentCoin.get("name").toString();
+                String symbol = currentCoin.get("symbol").toString();
+                int rank = Integer.parseInt(currentCoin.get("rank").toString());
+                double price = Double.parseDouble(currentCoin.get("price_usd").toString());
+                long volume = (long)Double.parseDouble(currentCoin.get("24h_volume_usd").toString());
+                long marketcap = (long)Double.parseDouble(currentCoin.get("market_cap_usd").toString());
+                long supply = (long)Double.parseDouble(currentCoin.get("available_supply").toString());
+                double percent1H = Double.parseDouble(currentCoin.get("percent_change_1h").toString());
+                double percent24H = Double.parseDouble(currentCoin.get("percent_change_24h").toString());
+                double percent7D = Double.parseDouble(currentCoin.get("percent_change_7d").toString());
+                ArrayList<Double> a = new HistoricalData().getHistoricData(price, percent24H, percent7D);
+                repo.updateCoin(new Coin(symbol, name, price, marketcap, supply, volume, rank, percent1H, percent24H, percent7D, a));
+            }
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 

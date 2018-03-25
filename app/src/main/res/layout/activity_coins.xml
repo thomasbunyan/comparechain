@@ -1,69 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <SearchView
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/background"
-        android:queryBackground="@android:color/transparent"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="7dp"
-        />
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/coinListHeading"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/greyHeader"
-        android:layout_below="@+id/searchBar"
-        android:orientation="horizontal">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+        <SearchView
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Coin" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/background"
+            android:queryBackground="@android:color/transparent"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="10dp"
-            android:text="USD" />
+        <LinearLayout
+            android:id="@+id/coinListHeading"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/greyHeader"
+            android:layout_below="@+id/searchBar"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="10dp"
-            android:text="Change" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/coinHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Coin" />
+
+            <TextView
+                android:id="@+id/priceHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="10dp"
+                android:text="USD" />
+
+            <TextView
+                android:id="@+id/changeHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="10dp"
+                android:text="Change" />
+        </LinearLayout>
 
 
 
-    <View
-        android:id="@+id/breakLine"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/coinListHeading"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        <View
+            android:id="@+id/breakLine"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/coinListHeading"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
 
-    <ListView
-        android:id="@+id/coinListView"
-        android:layout_below="@+id/breakLine"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
-</RelativeLayout>
+        <ListView
+            android:id="@+id/coinListView"
+            android:layout_below="@+id/breakLine"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

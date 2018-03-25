@@ -3,18 +3,23 @@ package qmul.se.g31.comparechain.GUIClasses;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import qmul.se.g31.comparechain.DataClasses.Coin;
 import qmul.se.g31.comparechain.DataClasses.SimulatedPortfolio;
+import qmul.se.g31.comparechain.GUIClasses.RowAdapters.CoinRowAdapter;
 import qmul.se.g31.comparechain.GUIClasses.RowAdapters.SimulatedRowAdapter;
 import qmul.se.g31.comparechain.R;
 import qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.ViewCoinWindow;
@@ -26,21 +31,39 @@ import qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.ViewCoinWindow;
 public class PortfolioView extends Fragment{
 
     View view;
-    //ArrayList<Coin> simulations;
+    private ListView myList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_portfolio, container, false);
 
-        PortfolioHeaderFragment data = (PortfolioHeaderFragment) getChildFragmentManager().findFragmentById(R.id.simHeader);
+        final PortfolioHeaderFragment data = (PortfolioHeaderFragment) getChildFragmentManager().findFragmentById(R.id.simHeader);
         data.setData();
-        SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
+        final SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
         //simulations = sim.getSimPort();
 
-        ListView myList = (ListView) view.findViewById(R.id.simList);
+        myList = (ListView) view.findViewById(R.id.simList);
         ListAdapter myAdapter = new SimulatedRowAdapter(getContext(), R.layout.simulate_list_row, sim.getSimPort());
         myList.setAdapter(myAdapter);
+
+        final SwipeRefreshLayout srl = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
+
+        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                data.setData();
+                ListAdapter myAdapter = new SimulatedRowAdapter(getContext(), R.layout.simulate_list_row, sim.getSimPort());
+                myList.setAdapter(myAdapter);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        srl.setRefreshing(false);
+                    }
+                }, 300);
+            }
+        });
 
         myList.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
@@ -54,6 +77,20 @@ public class PortfolioView extends Fragment{
                 }
         );
 
+        myList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int topRowVerticalPosition =
+                        (myList == null || myList.getChildCount() == 0) ?
+                                0 : myList.getChildAt(0).getTop();
+                srl.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
+            }
+        });
         return view;
     }
 
@@ -65,7 +102,6 @@ public class PortfolioView extends Fragment{
         PortfolioHeaderFragment data = (PortfolioHeaderFragment) getChildFragmentManager().findFragmentById(R.id.simHeader);
         data.setData();
         SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
-        //simulations = sim.getSimPort();
 
         ListView myList = (ListView) view.findViewById(R.id.simList);
         ListAdapter myAdapter = new SimulatedRowAdapter(getContext(), R.layout.simulate_list_row, sim.getSimPort());

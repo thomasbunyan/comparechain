@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".GUIClasses.ViewCoinWindow.ViewCoinWindow">
+    android:layout_height="match_parent">
 
-
-    <fragment
-        android:id="@+id/coinDataFragment"
-        android:name="qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.CoinDataFragment"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        tools:layout="@layout/fragment_view_coin_data"/>
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".GUIClasses.ViewCoinWindow.ViewCoinWindow">
 
-    <fragment
-        android:id="@+id/coinFavoriteFragment"
-        android:name="qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.ActionsCoinFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/coinDataFragment"
-        tools:layout="@layout/fragment_view_coin_actions"/>
 
-    <fragment
-        android:id="@+id/coinGraphFragment"
-        android:name="qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.CoinGraphFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/coinFavoriteFragment"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        tools:layout="@layout/fragment_view_coin_graph"/>
+        <fragment
+            android:id="@+id/coinDataFragment"
+            android:name="qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.CoinDataFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            tools:layout="@layout/fragment_view_coin_data"/>
 
-</RelativeLayout>
+        <fragment
+            android:id="@+id/coinFavoriteFragment"
+            android:name="qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.ActionsCoinFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/coinDataFragment"
+            tools:layout="@layout/fragment_view_coin_actions"/>
+
+        <fragment
+            android:id="@+id/coinGraphFragment"
+            android:name="qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.CoinGraphFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/coinFavoriteFragment"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            tools:layout="@layout/fragment_view_coin_graph"/>
+
+    </RelativeLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>
+

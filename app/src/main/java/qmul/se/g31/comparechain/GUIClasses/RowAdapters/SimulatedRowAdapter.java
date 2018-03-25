@@ -67,7 +67,7 @@ public class SimulatedRowAdapter extends ArrayAdapter<Coin>{
         mainViewHolder = (ViewHolder) convertView.getTag();
         Coin c = repo.searchCoin(mObjects.get(position).getSymbol());
         NumberFormat volumeFormatter = new DecimalFormat("#0.00000000");
-        NumberFormat priceFormatter = new DecimalFormat("$#,###.00");
+        NumberFormat priceFormatter = new DecimalFormat("$#,##0.00");
         NumberFormat percentFormatter = new DecimalFormat("##.000%");
 
         ImageView coinIcon = (ImageView) convertView.findViewById(R.id.coinIcon);
@@ -77,7 +77,7 @@ public class SimulatedRowAdapter extends ArrayAdapter<Coin>{
         TextView totalVolume = (TextView) convertView.findViewById(R.id.totalVolume);
         TextView coinProfit = (TextView) convertView.findViewById(R.id.coinProfit);
         TextView coinPrice = (TextView) convertView.findViewById(R.id.coinPrice);
-        TextView coinChange = (TextView) convertView.findViewById(R.id.coinChange);
+        TextView coinTag = (TextView) convertView.findViewById(R.id.coinTag);
 
         coinName.setText(c.getName());
         coinSymbol.setText(c.getSymbol());
@@ -85,7 +85,7 @@ public class SimulatedRowAdapter extends ArrayAdapter<Coin>{
         totalVolume.setText(volumeFormatter.format(sim.getCoinVolume(c)) + " " + c.getSymbol());
         coinProfit.setText(priceFormatter.format(sim.getCoinProfit(c)));
         coinPrice.setText(priceFormatter.format(c.getPrice()));
-        coinChange.setText(percentFormatter.format(c.getPercent1h()));
+        coinTag.setText("PRICE PER " + c.getSymbol());
 
         String imageName = c.getSymbol();
         imageName = imageName.toLowerCase();

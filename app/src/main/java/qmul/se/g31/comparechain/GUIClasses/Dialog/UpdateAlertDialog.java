@@ -39,7 +39,7 @@ public class UpdateAlertDialog extends DialogFragment {
         repo = Repository.getInstance();
         fav = Favorites.getInstance();
 
-        NumberFormat priceFormatter = new DecimalFormat("$#,###.00");
+        NumberFormat priceFormatter = new DecimalFormat("$#,##0.00");
         Bundle mArgs = getArguments();
         coin = repo.searchCoin(mArgs.getString("coin"));
 

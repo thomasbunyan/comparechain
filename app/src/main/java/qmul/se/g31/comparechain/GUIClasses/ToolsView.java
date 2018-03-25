@@ -64,7 +64,7 @@ public class ToolsView extends Fragment {
         Favorites fav = Favorites.getInstance();
         ArrayList<Coin> coin = fav.getFavorites();
         final ArrayList<String> coinNames = new ArrayList<String>();
-        for(int i = 0; i < coin.size(); i++) coinNames.add(coin.get(i).getName());
+        for(int i = 0; i < coin.size(); i++) coinNames.add(coin.get(i).getSymbol());
 
         priceA = (TextView) view.findViewById(R.id.priceA);
         marketcapA = (TextView) view.findViewById(R.id.marketcapA);
@@ -98,14 +98,14 @@ public class ToolsView extends Fragment {
                 new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        NumberFormat priceFormatter = new DecimalFormat("#,###.00");
+                        NumberFormat priceFormatter = new DecimalFormat("$#,##0.00");
                         coin1 = repo.searchCoin(coinNames.get(i));
-                        priceA.setText("$" + priceFormatter.format(coin1.getPrice()));
-                        marketcapA.setText("$" + priceFormatter.format(coin1.getMarketCap()));
+                        priceA.setText(priceFormatter.format(coin1.getPrice()));
+                        marketcapA.setText(formatPrice(coin1.getMarketCap()));
                         rankA.setText("#" + coin1.getRank());
-                        percent1HA.setText(priceFormatter.format(coin1.getPercent1h()) + "%");
-                        percent24HA.setText(priceFormatter.format(coin1.getPercent24h()) + "%");
-                        percent7DA.setText(priceFormatter.format(coin1.getPercent7d()) + "%");
+                        percent1HA.setText(Double.toString(coin1.getPercent1h()) + "%");
+                        percent24HA.setText(Double.toString(coin1.getPercent24h()) + "%");
+                        percent7DA.setText(Double.toString(coin1.getPercent7d()) + "%");
                         if(coin2 != null) calcDiff();
                     }
                     @Override
@@ -118,14 +118,14 @@ public class ToolsView extends Fragment {
                 new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        NumberFormat priceFormatter = new DecimalFormat("#,###.00");
+                        NumberFormat priceFormatter = new DecimalFormat("$#,##0.00");
                         coin2 = repo.searchCoin(coinNames.get(i));
-                        priceB.setText("$" + priceFormatter.format(coin2.getPrice()));
-                        marketcapB.setText("$" + priceFormatter.format(coin2.getMarketCap()));
+                        priceB.setText(priceFormatter.format(coin2.getPrice()));
+                        marketcapB.setText(formatPrice(coin2.getMarketCap()));
                         rankB.setText("#" + coin2.getRank());
-                        percent1HB.setText(priceFormatter.format(coin2.getPercent1h()) + "%");
-                        percent24HB.setText(priceFormatter.format(coin2.getPercent24h()) + "%");
-                        percent7DB.setText(priceFormatter.format(coin2.getPercent7d()) + "%");
+                        percent1HB.setText(Double.toString(coin2.getPercent1h()) + "%");
+                        percent24HB.setText(Double.toString(coin2.getPercent24h()) + "%");
+                        percent7DB.setText(Double.toString(coin2.getPercent7d()) + "%");
                         calcDiff();
                     }
                     @Override
@@ -136,6 +136,17 @@ public class ToolsView extends Fragment {
         return view;
     }
 
+    private String formatPrice(double price){
+        NumberFormat priceFormatter = new DecimalFormat("$#,##0.00");
+        String newPrice;
+
+        if(price > 1000000000.0) newPrice = String.format("$%.2fB", price/ 1000000000.0);
+        else if(price > 1000000.0) newPrice = String.format("$%.2fM", price/ 1000000.0);
+        else newPrice = priceFormatter.format(price);
+
+        return newPrice;
+    }
+
     private void calcDiff(){
         coin1 = repo.searchCoin(coin1.getSymbol());
         coin2 = repo.searchCoin(coin2.getSymbol());
@@ -144,7 +155,7 @@ public class ToolsView extends Fragment {
 
         priceDiff.setText("Price Difference: " + percentFormatter.format(((coin2.getPrice() - coin1.getPrice()) / coin2.getPrice()) * 100) + "%");
         mcapDiff.setText("Marketcap Difference: " + percentFormatter.format(((coin2.getMarketCap() - coin1.getMarketCap()) / coin2.getMarketCap()) * 100) + "%");
-        rankDiff.setText("Rank Difference: " + percentFormatter.format(((coin2.getRank() - coin1.getRank()) / coin2.getRank()) * 100) + "%");
+        rankDiff.setText("Rank Difference: " + (coin1.getRank() - coin2.getRank()));
         p1HDiff.setText("Percent1H Difference: " + percentFormatter.format(((coin2.getPercent1h() - coin1.getPercent1h()) / coin2.getPercent1h()) * 100) + "%");
         p24HDiff.setText("Percent24H Difference: " + percentFormatter.format(((coin2.getPercent24h() - coin1.getPercent24h()) / coin2.getPercent24h()) * 100) + "%");
         p7DDiff.setText("Percent7D Difference: " + percentFormatter.format(((coin2.getPercent7d() - coin1.getPercent7d()) / coin2.getPercent7d()) * 100) + "%");

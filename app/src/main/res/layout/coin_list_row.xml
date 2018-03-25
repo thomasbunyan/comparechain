@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/coinIcon"
@@ -17,7 +17,7 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
         android:layout_marginLeft="10dp">
 
         <TextView
@@ -37,17 +37,27 @@
 
     <TextView
         android:id="@+id/coinPrice"
-        android:layout_width="140dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="$10733.32"
-        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
         android:textSize="23dp"/>
 
     <TextView
         android:id="@+id/coinChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_gravity="center"
+        android:textSize="19dp"
         android:text="+3.4%" />
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="19dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="2dp"
+        android:tint="@color/good"
+        app:srcCompat="@drawable/ic_arrow_upward_black_24dp" />
 
 </LinearLayout>

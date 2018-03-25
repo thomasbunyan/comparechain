@@ -59,7 +59,7 @@ public class CoinDataFragment extends Fragment{
         String bitprices = bitFormatter.format(c.getPrice()/bitcoin.getPrice());
 
         NumberFormat bitFormatter2 = new DecimalFormat("#,###");
-        bitFormatter = new DecimalFormat("#,###.00");
+        NumberFormat priceFormatter = new DecimalFormat("$#,##0.00");
 
         coinIcon = (ImageView) view.findViewById(R.id.icon);
         coinSymbol = (TextView) view.findViewById(R.id.symbol);
@@ -81,24 +81,25 @@ public class CoinDataFragment extends Fragment{
         int resID = getContext().getResources().getIdentifier(imageName, "mipmap", "qmul.se.g31.comparechain");
         if(resID != 0) coinIcon.setImageResource(resID);
 
+        int mycolor = this.getContext().getColor(R.color.bad);
         if(c.getPercent1h() < 0) {
             arrow1H.setImageResource(R.drawable.ic_arrow_downward_black_24dp);
-            arrow1H.setColorFilter(R.color.bad);
+            arrow1H.setColorFilter(mycolor);
             coinPercent1H.setTextColor(ContextCompat.getColor(getContext(), R.color.bad));
         }
         if(c.getPercent24h() < 0){
             arrow24H.setImageResource(R.drawable.ic_arrow_downward_black_24dp);
-            arrow24H.setColorFilter(R.color.bad);
+            arrow24H.setColorFilter(mycolor);
             coinPercent24H.setTextColor(ContextCompat.getColor(getContext(), R.color.bad));
         }
         if(c.getPercent7d() < 0){
             arrow7D.setImageResource(R.drawable.ic_arrow_downward_black_24dp);
-            arrow7D.setColorFilter(R.color.bad);
+            arrow7D.setColorFilter(mycolor);
             coinPercent7D.setTextColor(ContextCompat.getColor(getContext(), R.color.bad));
         }
 
         coinSymbol.setText(c.getSymbol());
-        coinPrice.setText("$" + bitFormatter.format(c.getPrice()));
+        coinPrice.setText(priceFormatter.format(c.getPrice()));
         bitPrice.setText(bitprices + " BTC");
         coinPercent1H.setText("(" + Double.toString(c.getPercent1h()) + "%)");
         coinPercent24H.setText("(" + Double.toString(c.getPercent24h()) + "%)");

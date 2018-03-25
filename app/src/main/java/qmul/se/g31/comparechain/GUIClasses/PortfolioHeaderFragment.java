@@ -36,7 +36,7 @@ public class PortfolioHeaderFragment extends Fragment{
 
     public void setData(){
         SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
-        NumberFormat priceFormatter = new DecimalFormat("$#,###.00");
+        NumberFormat priceFormatter = new DecimalFormat("$#,##0.00");
 
         TextView userBalance = (TextView) view.findViewById(R.id.userBalance);
         Button resetButton = (Button) view.findViewById(R.id.resetButton);
