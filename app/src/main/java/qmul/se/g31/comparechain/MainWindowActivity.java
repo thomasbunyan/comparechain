@@ -293,7 +293,7 @@ public class MainWindowActivity extends AppCompatActivity
             setTitle("News");
             fragmentManager.beginTransaction().replace(R.id.content_frame , new NewsView()).commit();
         } else if (id == R.id.nav_tools) {
-            setTitle("Tools");
+            setTitle("Coin Comparison");
             fragmentManager.beginTransaction().replace(R.id.content_frame, new ToolsView()).commit();
         }
 

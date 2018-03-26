@@ -18,13 +18,13 @@
             android:icon="@drawable/ic_menu_portfolio"
             android:title="Simulated Portfolio" />
         <item
-            android:id="@+id/nav_priceConverter"
-            android:icon="@drawable/ic_menu_compare"
-            android:title="Price Converter" />
-        <item
             android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_compare"
             android:title="Coin Comparison" />
+        <item
+            android:id="@+id/nav_priceConverter"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Price Converter" />
         <item
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_menu_news"
