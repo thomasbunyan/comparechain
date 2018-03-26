@@ -19,19 +19,19 @@ In recent times cryptocurrencies have established themselves as a legitimate med
 ## Operation
 The app uses a familiar navigation draw to allow the user to search through the different features and windows within the application. By clicking on an item the user is transported to the window, from which they can interact with the new interface. The user can keep their coin information up-to-date by pulling down from the top of the window to refresh.
 
-<img src="https://i.imgur.com/bpwwf8P.png" width="350"><img src="https://i.imgur.com/nkycEbV.png" width="350" margin-left="100px">
+<img src="https://i.imgur.com/bpwwf8P.png" width="350" padding-right="50px"><img src="https://i.imgur.com/nkycEbV.png" width="350">
 
 ### Coin list
 When you first start the app you're placed in the coin window. This provides the user with a list of all cryptocurrencies, which can be sorted, searched and viewed.
 
-<img src="https://imgur.com/5jKzIzV.png" width="350" margin-left="100px"><img src="https://i.imgur.com/dniNbPq.png" width="350" padding-left="100">
+<img src="https://imgur.com/5jKzIzV.png" width="350"  padding-right="50px"><img src="https://i.imgur.com/dniNbPq.png" width="350">
 
 ----------
 
 ### Coin data
 Clicking on a coin opens the vw. This is where the most accurate and informative information about each coin is stored. Specific coin data, as well as a graph which shows the coins price trend over 30 days can be found here. By clicking on the star or plus/tick button, the user can add and remove coins from either their favourites or simulated portfolio.
 
-<img src="https://imgur.com/0uogzup.png" width="350"><img src="https://i.imgur.com/LHONfuT.png" width="350">
+<img src="https://imgur.com/0uogzup.png" width="350" padding-right="50px"><img src="https://i.imgur.com/LHONfuT.png" width="350">
 
 ----------
 
