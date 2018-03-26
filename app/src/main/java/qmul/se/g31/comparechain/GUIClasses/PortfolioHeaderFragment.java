@@ -1,5 +1,6 @@
 package qmul.se.g31.comparechain.GUIClasses;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,9 +14,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.lang.annotation.RetentionPolicy;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
+import qmul.se.g31.comparechain.DataClasses.Coin;
+import qmul.se.g31.comparechain.DataClasses.Repository;
 import qmul.se.g31.comparechain.DataClasses.SimulatedPortfolio;
 import qmul.se.g31.comparechain.R;
 
@@ -26,6 +31,7 @@ import qmul.se.g31.comparechain.R;
 public class PortfolioHeaderFragment extends Fragment{
 
     private View view;
+    HeaderListener headerListener;
 
     @Nullable
     @Override
@@ -44,7 +50,21 @@ public class PortfolioHeaderFragment extends Fragment{
         userBalance.setText(priceFormatter.format(sim.getUserFunds()));
         resetButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                System.out.println("RESET");
+                SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
+                Repository repo = Repository.getInstance();
+
+                ArrayList<Coin> sims = sim.getSimPort();
+                for(int i = 0; i < sims.size(); i++){
+                    sim.removeCoin(repo.searchCoin(sims.get(i).getSymbol()));
+                }
+
+                // Send signal here
+                headerListener.updateData();
+
+                Intent i = new Intent();
+                i.setAction("qmul.se.g31.refreshfrag");
+                i.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+                getContext().sendBroadcast(i);
             }
         });
     }
@@ -56,6 +76,20 @@ public class PortfolioHeaderFragment extends Fragment{
         intentFilter.addAction("qmul.se.g31.refreshfrag");
         MyBroadcastReceiver receiver = new MyBroadcastReceiver();
         getActivity().registerReceiver(receiver, intentFilter);
+    }
+
+    public interface HeaderListener{
+        public void updateData();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try{
+            headerListener = (HeaderListener) getParentFragment();
+        } catch (ClassCastException e){
+            System.out.println("NOPE");
+        }
     }
 
     private class MyBroadcastReceiver extends BroadcastReceiver {

@@ -1,6 +1,8 @@
 package qmul.se.g31.comparechain.GUIClasses;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +11,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -28,7 +31,7 @@ import qmul.se.g31.comparechain.GUIClasses.ViewCoinWindow.ViewCoinWindow;
  * Created by Thomas on 12/03/2018.
  */
 
-public class PortfolioView extends Fragment{
+public class PortfolioView extends Fragment implements PortfolioHeaderFragment.HeaderListener{
 
     View view;
     private ListView myList;
@@ -37,11 +40,11 @@ public class PortfolioView extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_portfolio, container, false);
+        hideKeyboard(getActivity());
 
         final PortfolioHeaderFragment data = (PortfolioHeaderFragment) getChildFragmentManager().findFragmentById(R.id.simHeader);
         data.setData();
         final SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
-        //simulations = sim.getSimPort();
 
         myList = (ListView) view.findViewById(R.id.simList);
         ListAdapter myAdapter = new SimulatedRowAdapter(getContext(), R.layout.simulate_list_row, sim.getSimPort());
@@ -94,7 +97,16 @@ public class PortfolioView extends Fragment{
         return view;
     }
 
+    @Override
+    public void updateData() {
+        PortfolioHeaderFragment data = (PortfolioHeaderFragment) getChildFragmentManager().findFragmentById(R.id.simHeader);
+        data.setData();
+        SimulatedPortfolio sim = SimulatedPortfolio.getInstance();
 
+        ListView myList = (ListView) view.findViewById(R.id.simList);
+        ListAdapter myAdapter = new SimulatedRowAdapter(getContext(), R.layout.simulate_list_row, sim.getSimPort());
+        myList.setAdapter(myAdapter);
+    }
 
     @Override
     public void onResume() {
@@ -106,5 +118,16 @@ public class PortfolioView extends Fragment{
         ListView myList = (ListView) view.findViewById(R.id.simList);
         ListAdapter myAdapter = new SimulatedRowAdapter(getContext(), R.layout.simulate_list_row, sim.getSimPort());
         myList.setAdapter(myAdapter);
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager inputManager = (InputMethodManager) activity
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        // check if no view has focus:
+        View currentFocusedView = activity.getCurrentFocus();
+        if (currentFocusedView != null) {
+            inputManager.hideSoftInputFromWindow(currentFocusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 }

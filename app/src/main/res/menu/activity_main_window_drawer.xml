@@ -22,13 +22,13 @@
             android:icon="@drawable/ic_menu_compare"
             android:title="Price Converter" />
         <item
+            android:id="@+id/nav_tools"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Coin Comparison" />
+        <item
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_menu_news"
             android:title="News" />
-        <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
     </group>
 
 </menu>

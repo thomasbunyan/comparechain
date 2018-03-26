@@ -64,7 +64,7 @@ public class CoinRowAdapter extends ArrayAdapter<Coin>{
         imageName = imageName.toLowerCase();
         int resID = getContext().getResources().getIdentifier(imageName, "mipmap", "qmul.se.g31.comparechain");
         if(resID != 0) coinIcon.setImageResource(resID);
-        else coinIcon.setImageResource(getContext().getResources().getIdentifier("ic_launcher_round", "mipmap", "qmul.se.g31.comparechain"));
+        else coinIcon.setImageResource(getContext().getResources().getIdentifier("missingcoin", "mipmap", "qmul.se.g31.comparechain"));
 
         if(c.getPercent24h() < 0) {
             int mycolor = this.getContext().getColor(R.color.bad);

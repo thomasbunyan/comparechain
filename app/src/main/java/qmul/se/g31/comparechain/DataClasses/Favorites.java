@@ -73,6 +73,15 @@ public class Favorites {
         return false;
     }
 
+    public Alert getAlert(String symbol){
+        for(int i = 0; i < alerts.size(); i++){
+            if(alerts.get(i).getSymbol().equals(symbol)) {
+                return alerts.get(i);
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Alert> getAlerts(){
         return this.alerts;
     }

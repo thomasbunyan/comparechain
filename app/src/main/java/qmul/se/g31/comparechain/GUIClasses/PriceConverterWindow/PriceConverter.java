@@ -1,6 +1,8 @@
 package qmul.se.g31.comparechain.GUIClasses.PriceConverterWindow;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.app.ProgressDialog;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -46,6 +49,7 @@ public class PriceConverter extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+        hideKeyboard(getActivity());
 
         mService = Common.getCoinService();
 
@@ -241,6 +245,17 @@ public class PriceConverter extends Fragment {
         return inflater.inflate(R.layout.fragment_price_converter, container, false);
 
 
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager inputManager = (InputMethodManager) activity
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        // check if no view has focus:
+        View currentFocusedView = activity.getCurrentFocus();
+        if (currentFocusedView != null) {
+            inputManager.hideSoftInputFromWindow(currentFocusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 
 }

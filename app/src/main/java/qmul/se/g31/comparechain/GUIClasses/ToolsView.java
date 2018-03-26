@@ -1,11 +1,14 @@
 package qmul.se.g31.comparechain.GUIClasses;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -59,6 +62,7 @@ public class ToolsView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_tools, container, false);
+        hideKeyboard(getActivity());
 
         repo = repo.getInstance();
         Favorites fav = Favorites.getInstance();
@@ -161,6 +165,14 @@ public class ToolsView extends Fragment {
         p7DDiff.setText("Percent7D Difference: " + percentFormatter.format(((coin2.getPercent7d() - coin1.getPercent7d()) / coin2.getPercent7d()) * 100) + "%");
     }
 
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager inputManager = (InputMethodManager) activity
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
 
-
+        // check if no view has focus:
+        View currentFocusedView = activity.getCurrentFocus();
+        if (currentFocusedView != null) {
+            inputManager.hideSoftInputFromWindow(currentFocusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
 }

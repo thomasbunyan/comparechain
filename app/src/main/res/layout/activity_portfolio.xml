@@ -18,11 +18,18 @@
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_portfolio_header" />
 
+        <View
+            android:id="@+id/breakLine"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/simHeader"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
         <ListView
             android:id="@+id/simList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/simHeader"/>
+            android:layout_below="@+id/breakLine"/>
     </RelativeLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

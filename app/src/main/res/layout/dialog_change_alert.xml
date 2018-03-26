@@ -60,30 +60,52 @@
         android:layout_below="@+id/coinPrice"
         android:layout_alignStart="@+id/maxPrice"
         android:layout_marginTop="15dp"
+        android:textSize="15dp"
+        android:layout_marginStart="2dp"
+        android:text="Set alert for when the price is..." />
+
+    <TextView
+        android:id="@+id/textMesage3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textMesage2"
+        android:layout_alignStart="@+id/maxPrice"
+        android:layout_marginTop="15dp"
         android:textSize="12dp"
         android:layout_marginStart="2dp"
-        android:text="Enter the bounds (leave empty if not applicable)." />
+        android:text="Above:" />
 
     <EditText
         android:id="@+id/maxPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textMesage2"
+        android:layout_below="@+id/textMesage3"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
         android:ems="15"
         android:hint="Max bound"
-        android:inputType="number" />
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textMesage4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/maxPrice"
+        android:layout_alignStart="@+id/maxPrice"
+        android:layout_marginTop="15dp"
+        android:textSize="12dp"
+        android:layout_marginStart="2dp"
+        android:text="Below:" />
 
     <EditText
         android:id="@+id/minPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/maxPrice"
-        android:layout_below="@+id/maxPrice"
+        android:layout_below="@+id/textMesage4"
         android:ems="15"
         android:hint="Min bound"
         android:layout_marginBottom="20dp"
-        android:inputType="number" />
+        android:inputType="numberDecimal" />
 
 </RelativeLayout>

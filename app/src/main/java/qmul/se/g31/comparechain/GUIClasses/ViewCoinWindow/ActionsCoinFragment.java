@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -56,12 +57,16 @@ public class ActionsCoinFragment extends Fragment{
                     new ImageView.OnClickListener(){
                     public void onClick(View v){
                         if(repo.searchCoin(coin.getSymbol()).isFavorite()){
+                            // Remove from favourites.
                             favIcon.setImageResource(R.drawable.ic_star_border_black_24dp);
                             fav.removeFromFavorites(coin.getSymbol());
+                            Toast.makeText(getContext(), "Removed from favorites", Toast.LENGTH_SHORT).show();
                         }
                         else{
+                            // Add to favourites.
                             favIcon.setImageResource(R.drawable.ic_menu_favorites);
                             fav.addToFavorites(coin.getSymbol());
+                            Toast.makeText(getContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -74,11 +79,13 @@ public class ActionsCoinFragment extends Fragment{
                             // Remove from sim.
                             simButton.setImageResource(R.drawable.ic_add);
                             sim.removeCoin(repo.searchCoin(coin.getSymbol()));
+                            Toast.makeText(getContext(), "Removed from simulated portfolio", Toast.LENGTH_SHORT).show();
                         }
                         else{
                             // Add to sim.
                             simButton.setImageResource(R.drawable.ic_check);
                             sim.addCoin(repo.searchCoin(coin.getSymbol()));
+                            Toast.makeText(getContext(), "Added to simulated portfolio", Toast.LENGTH_SHORT).show();
                         }
                         // Because it is paused, we have to re-save the data. Annoying.
                         saveData();

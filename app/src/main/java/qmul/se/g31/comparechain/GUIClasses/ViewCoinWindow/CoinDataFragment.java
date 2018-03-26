@@ -80,6 +80,7 @@ public class CoinDataFragment extends Fragment{
         imageName = imageName.toLowerCase();
         int resID = getContext().getResources().getIdentifier(imageName, "mipmap", "qmul.se.g31.comparechain");
         if(resID != 0) coinIcon.setImageResource(resID);
+        else coinIcon.setImageResource(getContext().getResources().getIdentifier("missingcoin", "mipmap", "qmul.se.g31.comparechain"));
 
         int mycolor = this.getContext().getColor(R.color.bad);
         if(c.getPercent1h() < 0) {

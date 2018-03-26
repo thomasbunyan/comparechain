@@ -1,6 +1,7 @@
 package qmul.se.g31.comparechain.GUIClasses.RowAdapters;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,13 +15,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import qmul.se.g31.comparechain.GUIClasses.Dialog.ChangeBalanceDialog;
-import qmul.se.g31.comparechain.GUIClasses.Dialog.ConfDialog;
 import qmul.se.g31.comparechain.DataClasses.Coin;
 import qmul.se.g31.comparechain.DataClasses.Favorites;
 import qmul.se.g31.comparechain.DataClasses.Repository;
@@ -91,6 +92,7 @@ public class SimulatedRowAdapter extends ArrayAdapter<Coin>{
         imageName = imageName.toLowerCase();
         int resID = getContext().getResources().getIdentifier(imageName, "mipmap", "qmul.se.g31.comparechain");
         if(resID != 0) coinIcon.setImageResource(resID);
+        else coinIcon.setImageResource(getContext().getResources().getIdentifier("missingcoin", "mipmap", "qmul.se.g31.comparechain"));
 
         if(!c.isFavorite()){
             mainViewHolder.favButton.setImageResource(R.drawable.ic_star_border_black_24dp);
@@ -106,21 +108,39 @@ public class SimulatedRowAdapter extends ArrayAdapter<Coin>{
                 if(coin.isFavorite()){
                     mainViewHolder.favButton.setImageResource(R.drawable.ic_star_border_black_24dp);
                     fav.removeFromFavorites(coin.getSymbol());
+                    Toast.makeText(getContext(), "Removed from favorites", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     mainViewHolder.favButton.setImageResource(R.drawable.ic_menu_favorites);
                     fav.addToFavorites(coin.getSymbol());
+                    Toast.makeText(getContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         mainViewHolder.removeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Coin coin = repo.searchCoin(mObjects.get(position).getSymbol());
-                //openConfDialog(coin.getSymbol());
-                sim.removeCoin(coin);
-                mObjects.remove(position);
-                updatedData(mObjects);
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                Coin coin = repo.searchCoin(mObjects.get(position).getSymbol());
+                                sim.removeCoin(coin);
+                                mObjects.remove(position);
+                                updatedData(mObjects);
+                                Toast.makeText(getContext(), "Removed from simulated portfolio", Toast.LENGTH_SHORT).show();
+                                break;
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Are you sure you want to remove this coin?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
             }
         });
         mainViewHolder.balanceButton.setOnClickListener(new View.OnClickListener() {
@@ -152,33 +172,7 @@ public class SimulatedRowAdapter extends ArrayAdapter<Coin>{
         balDialog.show(fm, "FPM");
     }
 
-    private void openConfDialog(String sym){
-        Bundle args = new Bundle();
-        args.putString("coin", sym);
-
-        final FragmentManager fm = ((Activity) context).getFragmentManager();
-        ConfDialog balDialog = new ConfDialog();
-
-        balDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                // Refresh.
-                updatedData(mObjects);
-            }
-        });
-        balDialog.setArguments(args);
-        balDialog.show(fm, "YESNO");
-    }
-
-
-
     public void updatedData(ArrayList<Coin> itemsArrayList) {
-//        this.clear();
-//        if (itemsArrayList != null){
-//            for (Coin c : itemsArrayList) {
-//                this.insert(c, this.getCount());
-//            }
-//        }
         notifyDataSetChanged();
 
         Intent i = new Intent();
@@ -186,8 +180,6 @@ public class SimulatedRowAdapter extends ArrayAdapter<Coin>{
         i.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         context.sendBroadcast(i);
     }
-
-
 
     public class ViewHolder {
         ImageView favButton;

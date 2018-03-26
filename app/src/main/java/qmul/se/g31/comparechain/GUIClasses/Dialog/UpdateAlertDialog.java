@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -43,7 +44,7 @@ public class UpdateAlertDialog extends DialogFragment {
         Bundle mArgs = getArguments();
         coin = repo.searchCoin(mArgs.getString("coin"));
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.dialog_change_alert, null);
 
@@ -62,6 +63,7 @@ public class UpdateAlertDialog extends DialogFragment {
         imageName = imageName.toLowerCase();
         int resID = getContext().getResources().getIdentifier(imageName, "mipmap", "qmul.se.g31.comparechain");
         if(resID != 0) coinIcon.setImageResource(resID);
+        else coinIcon.setImageResource(getContext().getResources().getIdentifier("missingcoin", "mipmap", "qmul.se.g31.comparechain"));
 
         builder.setView(view)
                 .setTitle("Add alert")
@@ -74,22 +76,44 @@ public class UpdateAlertDialog extends DialogFragment {
                 .setPositiveButton("Alert", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        // Update the alert.
                         double max, min;
-                        if(maxPrice.getText().toString().equals("")) max = 0.0;
+                        if(maxPrice.getText().toString().equals("")) max = -1;
                         else max = (Double.parseDouble(maxPrice.getText().toString()));
-                        if(minPrice.getText().toString().equals("")) min = 0.0;
+                        if(minPrice.getText().toString().equals("")) min = -1;
                         else min = (Double.parseDouble(minPrice.getText().toString()));
 
-                        fav.updateAlert(new Alert(coin.getSymbol(), max, min));
+                        if(max <= 0.0 && min <= 0.0){
+                            // Don't update the alert.
+                            Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            if(max != -1 || min != -1){
+                                if((max != -1 && max <= coin.getPrice()) || (min != -1 && min >= coin.getPrice()) || max == 0 || min == 0){
+                                    // Don't update the alert.
+                                    Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    // Update the alert.
+                                    fav.updateAlert(new Alert(coin.getSymbol(), max, min));
+                                    Toast.makeText(getContext(), "Alert updated", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else{
+                                // Don't update the alert.
+                                Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
                 });
         if(fav.hasAlert(coin.getSymbol())){
+            if(fav.getAlert(coin.getSymbol()).getMax() != 0) maxPrice.setHint("Current bound: " + priceFormatter.format(fav.getAlert(coin.getSymbol()).getMax()));
+            if(fav.getAlert(coin.getSymbol()).getMin() != 0) minPrice.setHint("Current bound: " + priceFormatter.format(fav.getAlert(coin.getSymbol()).getMin()));
             builder.setNegativeButton("Remove", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     // Remove the alert
                     fav.removeAlert(coin.getSymbol());
+                    Toast.makeText(getContext(), "Alert removed", Toast.LENGTH_SHORT).show();
                 }
             })
             .setTitle("Update alert");
