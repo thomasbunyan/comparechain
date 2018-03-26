@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import org.json.simple.JSONArray;
@@ -36,7 +35,7 @@ import qmul.se.g31.comparechain.DataClasses.MarketData;
 import qmul.se.g31.comparechain.DataClasses.Repository;
 import qmul.se.g31.comparechain.DataClasses.SimulatedPortfolio;
 import qmul.se.g31.comparechain.GUIClasses.CoinView;
-import qmul.se.g31.comparechain.GUIClasses.FavoritesView;
+import qmul.se.g31.comparechain.GUIClasses.FavouritesView;
 import qmul.se.g31.comparechain.GUIClasses.NewsView;
 import qmul.se.g31.comparechain.GUIClasses.PortfolioView;
 import qmul.se.g31.comparechain.GUIClasses.PriceConverterWindow.PriceConverter;
@@ -281,8 +280,8 @@ public class MainWindowActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_frame, new CoinView()).commit();
             setTitle("Coins");
         } else if (id == R.id.nav_favorites) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new FavoritesView()).commit();
-            setTitle("Favorites");
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new FavouritesView()).commit();
+            setTitle("Favourites");
         } else if (id == R.id.nav_portfolio) {
             setTitle("Simulated Portfolio");
             fragmentManager.beginTransaction().replace(R.id.content_frame, new PortfolioView()).commit();

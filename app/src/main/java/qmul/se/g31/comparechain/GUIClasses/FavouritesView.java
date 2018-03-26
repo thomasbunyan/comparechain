@@ -15,7 +15,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import qmul.se.g31.comparechain.DataClasses.Coin;
-import qmul.se.g31.comparechain.GUIClasses.RowAdapters.FavoriteRowAdapter;
+import qmul.se.g31.comparechain.GUIClasses.RowAdapters.FavouriteRowAdapter;
 import qmul.se.g31.comparechain.DataClasses.Favorites;
 import qmul.se.g31.comparechain.R;
 
@@ -23,7 +23,7 @@ import qmul.se.g31.comparechain.R;
  * Created by Thomas on 12/03/2018.
  */
 
-public class FavoritesView extends Fragment {
+public class FavouritesView extends Fragment {
 
     View view;
 
@@ -38,7 +38,7 @@ public class FavoritesView extends Fragment {
         ArrayList<Coin> favorites = fav.getFavorites();
 
         ListView myList = (ListView) view.findViewById(R.id.favoritesListView);
-        ListAdapter myAdapter = new FavoriteRowAdapter(getContext(), R.layout.favorite_list_row, favorites);
+        ListAdapter myAdapter = new FavouriteRowAdapter(getContext(), R.layout.favorite_list_row, favorites);
         myList.setAdapter(myAdapter);
 
         return view;

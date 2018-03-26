@@ -60,13 +60,13 @@ public class ActionsCoinFragment extends Fragment{
                             // Remove from favourites.
                             favIcon.setImageResource(R.drawable.ic_star_border_black_24dp);
                             fav.removeFromFavorites(coin.getSymbol());
-                            Toast.makeText(getContext(), "Removed from favorites", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Removed from favourites", Toast.LENGTH_SHORT).show();
                         }
                         else{
                             // Add to favourites.
                             favIcon.setImageResource(R.drawable.ic_menu_favorites);
                             fav.addToFavorites(coin.getSymbol());
-                            Toast.makeText(getContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Added to favourites", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

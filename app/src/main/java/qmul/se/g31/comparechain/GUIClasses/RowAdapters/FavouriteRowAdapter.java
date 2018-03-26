@@ -30,7 +30,7 @@ import qmul.se.g31.comparechain.R;
  * Created by Thomas on 16/03/2018.
  */
 
-public class FavoriteRowAdapter extends ArrayAdapter<Coin> {
+public class FavouriteRowAdapter extends ArrayAdapter<Coin> {
 
     private int layout;
     private  ArrayList<Coin> mObjects;
@@ -41,7 +41,7 @@ public class FavoriteRowAdapter extends ArrayAdapter<Coin> {
     private Favorites fav;
     private Context context;
 
-    public FavoriteRowAdapter(@NonNull Context context, int resource, ArrayList<Coin> objects) {
+    public FavouriteRowAdapter(@NonNull Context context, int resource, ArrayList<Coin> objects) {
         super(context, resource, objects);
         this.mObjects = objects;
         this.layout = resource;
@@ -96,7 +96,7 @@ public class FavoriteRowAdapter extends ArrayAdapter<Coin> {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 //Yes button clicked
-                                Toast.makeText(getContext(), "Removed from favorites", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Removed from favourites", Toast.LENGTH_SHORT).show();
                                 Coin coin = repo.searchCoin(mObjects.get(position).getSymbol());
                                 fav.removeFromFavorites(coin.getSymbol());
                                 mObjects.remove(coin);
@@ -111,7 +111,7 @@ public class FavoriteRowAdapter extends ArrayAdapter<Coin> {
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Are you sure you want to remove this from favorites?").setPositiveButton("Yes", dialogClickListener)
+                builder.setMessage("Are you sure you want to remove this from favourites?").setPositiveButton("Yes", dialogClickListener)
                         .setNegativeButton("No", dialogClickListener).show();
             }
         });

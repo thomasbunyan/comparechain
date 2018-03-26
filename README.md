@@ -14,7 +14,7 @@ In recent times cryptocurrencies have established themselves as a legitimate med
 
 
 ## Deployment
-[Link to APK](https://www.dropbox.com/s/3nr7xzs9wy4apx1/CompareChain.apk?dl=0)
+[Link to APK](https://www.dropbox.com/s/aqqf0cdnpm7oojy/CompareChain.apk?dl=0)
 
 [Click me for deployment instructions](https://www.androidcentral.com/android-apps-install/)
 
